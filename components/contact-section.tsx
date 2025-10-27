@@ -62,7 +62,7 @@ export function ContactSection() {
                 asChild
                 className="hover:border-primary hover:text-primary bg-transparent"
               >
-                <a href="https://github.com/hanihashmi333" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/hanihashmi786" target="_blank" rel="noopener noreferrer">
                   <Github className="h-5 w-5 mr-2" />
                   GitHub
                 </a>
@@ -73,7 +73,7 @@ export function ContactSection() {
                 asChild
                 className="hover:border-primary hover:text-primary bg-transparent"
               >
-                <a href="https://linkedin.com/in/hanihashmi786" target="_blank" rel="noopener noreferrer">
+                <a href="https://linkedin.com/in/hanihashmi" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5 mr-2" />
                   LinkedIn
                 </a>

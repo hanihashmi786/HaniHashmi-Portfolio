@@ -73,7 +73,7 @@ export function HeroSection() {
 
           <div className="flex items-center justify-center gap-4 animate-fade-in-up delay-250">
             <a
-              href="https://github.com/hanihashmi333"
+              href="https://github.com/hanihashmi786"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
@@ -81,7 +81,7 @@ export function HeroSection() {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com/in/hanihashmi786"
+              href="https://linkedin.com/in/hanihashmi"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
