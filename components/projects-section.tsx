@@ -2,8 +2,9 @@
 
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Smartphone } from "lucide-react"
+import { ExternalLink, Github, Smartphone, Lock } from "lucide-react"
 import { useState } from "react"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 const projects = [
   {
@@ -12,7 +13,8 @@ const projects = [
       "A comprehensive web portal built with React and Python backend, streamlining business operations and user management.",
     tech: ["React", "Python", "Flask", "PostgreSQL"],
     liveUrl: "https://breakportal.marsbpo.team/login",
-    githubUrl: "#",
+    githubUrl: null,
+    codeConfidential: true,
     status: "live",
     previewUrl: "https://breakportal.marsbpo.team/login",
   },
@@ -23,7 +25,8 @@ const projects = [
     tech: ["React Native", "React", "Node.js", "MongoDB"],
     liveUrl: "https://callloom.com/",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.calloom3",
-    githubUrl: "#",
+    githubUrl: null,
+    codeConfidential: true,
     status: "live",
     previewUrl: "https://callloom.com/",
   },
@@ -33,7 +36,8 @@ const projects = [
       "Data cleaning and processing tool utilizing Python and machine learning algorithms for data quality improvement.",
     tech: ["Python", "Django", "Machine Learning", "PostgreSQL"],
     liveUrl: "https://scrubber.marsbpo.team/",
-    githubUrl: "#",
+    githubUrl: null,
+    codeConfidential: true,
     status: "live",
     previewUrl: "https://scrubber.marsbpo.team/",
   },
@@ -43,7 +47,8 @@ const projects = [
       "Advanced dialing system mobile app with real-time communication features and user-friendly interface.",
     tech: ["React Native", "TypeScript", "Express"],
     liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: null,
+    codeConfidential: true,
     status: "ui-only",
     statusText: "UI Design for Team",
   },
@@ -53,7 +58,8 @@ const projects = [
       "Task management and productivity application with real-time collaboration features built using the MERN stack.",
     tech: ["MongoDB", "Express", "React", "Node.js"],
     liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/hanihashmi786/taskio",
+    codeConfidential: false,
     status: "archived",
     statusText: "Removed by company - Code available",
   },
@@ -62,7 +68,8 @@ const projects = [
     description: "Islamic mobile application providing spiritual guidance and resources, built with React Native.",
     tech: ["React Native", "Firebase", "TypeScript"],
     liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: null,
+    codeConfidential: false,
     status: "in-progress",
     statusText: "In Progress",
   },
@@ -185,12 +192,33 @@ export function ProjectsSection() {
                           Play Store
                         </a>
                       </Button>
-                    ) : (
+                    ) : project.codeConfidential ? (
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="flex-1">
+                              <Button variant="outline" size="sm" className="w-full bg-transparent" disabled>
+                                <Lock className="h-4 w-4 mr-2" />
+                                Code
+                              </Button>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent className="max-w-xs">
+                            <p className="text-sm">Source code cannot be disclosed due to company policy and confidentiality agreements.</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    ) : project.githubUrl ? (
                       <Button variant="outline" size="sm" className="flex-1 bg-transparent" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" />
                           Code
                         </a>
+                      </Button>
+                    ) : (
+                      <Button variant="outline" size="sm" className="flex-1 bg-transparent" disabled>
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
                       </Button>
                     )}
                   </div>
