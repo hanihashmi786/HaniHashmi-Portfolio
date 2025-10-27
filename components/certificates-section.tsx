@@ -67,13 +67,19 @@ export function CertificatesSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certificates.map((cert, index) => (
-              <Card
+              <a
                 key={index}
-                className="group hover:shadow-xl hover:scale-105 transition-all duration-300 border-border hover:border-primary/50 bg-card relative"
-                onMouseEnter={() => setHoveredCert(index)}
-                onMouseLeave={() => setHoveredCert(null)}
+                href={cert.previewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
               >
-                <CardContent className="p-6 space-y-4">
+                <Card
+                  className="group hover:shadow-xl hover:scale-105 transition-all duration-300 border-border hover:border-primary/50 bg-card relative cursor-pointer"
+                  onMouseEnter={() => setHoveredCert(index)}
+                  onMouseLeave={() => setHoveredCert(null)}
+                >
+                  <CardContent className="p-6 space-y-4">
                   <div className="flex items-start justify-between">
                     <div className="text-4xl">{cert.icon}</div>
                     <Badge variant="secondary" className="text-xs">
@@ -141,7 +147,8 @@ export function CertificatesSection() {
                     <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-4 h-4 bg-card border-r-2 border-b-2 border-primary rotate-45" />
                   </div>
                 )}
-              </Card>
+                </Card>
+              </a>
             ))}
           </div>
         </div>
