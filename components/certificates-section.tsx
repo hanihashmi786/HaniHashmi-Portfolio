@@ -11,14 +11,14 @@ const certificates = [
     issuer: "Google",
     category: "IT Support",
     icon: "🎓",
-    previewUrl: "https://www.coursera.com/account/accomplishments/verify/273ZF7A7Q7D3?utm_source=android&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course",
+    previewUrl: "https://www.coursera.org/account/accomplishments/specialization/M3Z7RXTV3USK",
   },
   {
     title: "Crash Course on Python",
     issuer: "Google",
     category: "Programming",
     icon: "🐍",
-    previewUrl: "https://www.coursera.com/account/accomplishments/verify/J84V3X24G8KR?utm_source=android&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course",
+    previewUrl: "https://www.coursera.org/account/accomplishments/verify/92GHMDFMNXX5",
   },
   {
     title: "Introduction to DevOps",
@@ -32,21 +32,21 @@ const certificates = [
     issuer: "Coursera",
     category: "Data Science",
     icon: "📊",
-    previewUrl: "https://www.coursera.com/account/accomplishments/verify/J84V3X24G8KR?utm_source=android&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course",
+    previewUrl: "https://www.coursera.org/account/accomplishments/verify/STFQPQJYUP3Y",
   },
   {
     title: "JavaScript (Basics)",
     issuer: "Coursera",
     category: "Programming",
     icon: "💻",
-    previewUrl: "https://www.coursera.com/account/accomplishments/verify/273ZF7A7Q7D3?utm_source=android&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course",
+    previewUrl: "https://www.coursera.org/account/accomplishments/verify/92GHMDFMNXX5",
   },
   {
     title: "JavaScript",
     issuer: "HackerRank",
     category: "Programming",
     icon: "⚡",
-    previewUrl: "https://www.hackerrank.com/certificates/1234567890",
+    previewUrl: "https://www.hackerrank.com/certificates/52f0c9f6cb85",
   },
 ]
 
