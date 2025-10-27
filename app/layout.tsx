@@ -21,6 +21,14 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Hani Mustafa Hashmi, a Software Engineer specializing in dynamic, user-friendly web and mobile applications.",
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({
