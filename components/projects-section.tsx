@@ -22,7 +22,7 @@ const projects = [
     title: "Call Loom",
     description:
       "Comprehensive communication platform with both mobile app and web version. Built with React Native for mobile and React for web, featuring call management, analytics, and real-time communication.",
-    tech: ["React Native", "React", "Node.js", "MongoDB"],
+    tech: ["React Native", "React", "Django", "PostgreSQL","CSS"],
     liveUrl: "https://callloom.com/",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.calloom3",
     githubUrl: null,
@@ -34,7 +34,7 @@ const projects = [
     title: "Data Scrubber",
     description:
       "Data cleaning and processing tool utilizing Python and machine learning algorithms for data quality improvement.",
-    tech: ["Python", "Django", "Machine Learning", "PostgreSQL"],
+    tech: ["Python", "Flask", "HTML", "CSS", "JavaScript", "PostgreSQL"],
     liveUrl: "https://scrubber.marsbpo.team/",
     githubUrl: null,
     codeConfidential: true,
@@ -45,9 +45,9 @@ const projects = [
     title: "Dial Loom",
     description:
       "Advanced dialing system mobile app with real-time communication features and user-friendly interface.",
-    tech: ["React Native", "TypeScript", "Express"],
+    tech: ["React Native", "TypeScript", "Django", "ResponsiveCSS"],
     liveUrl: "#",
-    githubUrl: null,
+    githubUrl: "https://github.com/hanihashmi786/Dial-Loom",
     codeConfidential: true,
     status: "ui-only",
     statusText: "UI Design for Team",
@@ -56,9 +56,9 @@ const projects = [
     title: "Taskio",
     description:
       "Task management and productivity application with real-time collaboration features built using the MERN stack.",
-    tech: ["MongoDB", "Express", "React", "Node.js"],
+    tech: ["Django", "PostgreSQL", "React+Vite", "Tailwind CSS", "Responsive CSS"],
     liveUrl: "#",
-    githubUrl: "https://github.com/hanihashmi786/taskio",
+    githubUrl: "https://github.com/hanihashmi786/Taskio",
     codeConfidential: false,
     status: "archived",
     statusText: "Removed by company - Code available",
@@ -66,7 +66,7 @@ const projects = [
   {
     title: "Rujo-illalah",
     description: "A mobile application providing spiritual guidance and resources, built with React Native.",
-    tech: ["React Native", "Firebase", "TypeScript"],
+    tech: ["React Native", "Django", "TypeScript", "Responsive CSS"],
     liveUrl: "#",
     githubUrl: null,
     codeConfidential: false,
