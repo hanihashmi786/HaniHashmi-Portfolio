@@ -11,7 +11,7 @@ const experiences = [
     period: "Oct 2025 - Present",
     description: [
       "Providing services as Full Stack Developer",
-      "Developed the Islamic mobile app 'Rujo-illalah' using React Native",
+      "Developed the mobile app 'Rujo-illalah' using React Native",
     ],
     current: true,
   },

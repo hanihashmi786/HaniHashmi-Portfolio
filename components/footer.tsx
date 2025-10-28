@@ -12,7 +12,7 @@ export function Footer() {
 
           <div className="flex items-center gap-4">
             <a
-              href="/resume.pdf"
+              href="/Hani Hashmi - Software-AI Engineer.pdf"
               download
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >

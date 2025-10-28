@@ -65,7 +65,7 @@ const projects = [
   },
   {
     title: "Rujo-illalah",
-    description: "Islamic mobile application providing spiritual guidance and resources, built with React Native.",
+    description: "A mobile application providing spiritual guidance and resources, built with React Native.",
     tech: ["React Native", "Firebase", "TypeScript"],
     liveUrl: "#",
     githubUrl: null,
