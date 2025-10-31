@@ -7,6 +7,16 @@ import { useState } from "react"
 
 const projects = [
   {
+    title: "Gogo Sports",
+    description:
+      "A premium sports store in KSA for match balls, training gear, tracksuits, uniforms, and goalkeeper gloves. Built with Next.js and deployed as a production e-commerce experience.",
+    tech: ["Next.js"],
+    liveUrl: "https://gogosports.online/",
+    githubUrl: "#",
+    status: "live",
+    previewUrl: "https://gogosports.online/",
+  },
+  {
     title: "Break Portal",
     description:
       "A comprehensive web portal built with React and Python backend, streamlining business operations and user management.",

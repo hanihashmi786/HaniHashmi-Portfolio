@@ -5,7 +5,15 @@ import { Badge } from "@/components/ui/badge"
 import { Award, ExternalLink } from "lucide-react"
 import { useState } from "react"
 
-const certificates = [
+type Certificate = {
+  title: string
+  issuer: string
+  category: string
+  icon: string
+  previewUrl?: string
+}
+
+const certificates: Certificate[] = [
   {
     title: "Google IT Support",
     issuer: "Google",
@@ -55,6 +63,12 @@ const certificates = [
     icon: "📱",
     previewUrl: "https://www.coursera.org/account/accomplishments/verify/W9XMI8AGU48H",
   },
+  {
+    title: "Lean Six Sigma White Belt",
+    issuer: "Smart Irtekaz",
+    category: "Process Improvement",
+    icon: "📈",
+  },
 ]
 
 export function CertificatesSection() {
@@ -99,14 +113,23 @@ export function CertificatesSection() {
                   </div>
 
                   <div className="pt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="flex items-center gap-2 text-sm text-primary">
-                      <span>View Certificate</span>
-                      <ExternalLink className="h-4 w-4" />
-                    </div>
+                    {cert.previewUrl ? (
+                      <a
+                        href={cert.previewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-primary"
+                      >
+                        <span>View Certificate</span>
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    ) : (
+                      <div className="text-sm text-muted-foreground">No public verification link</div>
+                    )}
                   </div>
                 </CardContent>
 
-                {hoveredCert === index && (
+                {hoveredCert === index && cert.previewUrl && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 -translate-y-full z-50 pointer-events-none">
                     <div className="bg-card border-2 border-primary rounded-xl shadow-2xl overflow-hidden w-[400px] animate-in fade-in slide-in-from-bottom-4 duration-300">
                       {/* Browser-style header */}
