@@ -48,6 +48,13 @@ const certificates = [
     icon: "⚡",
     previewUrl: "https://www.coursera.org/learn/javascript",
   },
+  {
+    title: "Advanced Appium: Scalable Mobile Test Automation",
+    issuer: "Coursera",
+    category: "Test Automation",
+    icon: "📱",
+    previewUrl: "https://www.coursera.org/account/accomplishments/verify/W9XMI8AGU48H",
+  },
 ]
 
 export function CertificatesSection() {

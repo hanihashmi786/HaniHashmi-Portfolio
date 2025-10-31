@@ -66,6 +66,16 @@ const projects = [
     status: "in-progress",
     statusText: "In Progress",
   },
+  {
+    title: "Motorek",
+    description: "A comprehensive car oil change service platform providing both mobile application and website. Built with React Native for mobile, Next.js for web, Django for backend, and PostgreSQL for database.",
+    tech: ["React Native", "Next.js", "Django", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: null,
+    codeConfidential: false,
+    status: "in-progress",
+    statusText: "In Progress",
+  },
 ]
 
 export function ProjectsSection() {
