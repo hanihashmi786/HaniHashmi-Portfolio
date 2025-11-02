@@ -18,7 +18,7 @@ const experiences = [
   {
     title: "Full Stack Developer",
     company: "Mars BPO Pvt. Ltd.",
-    location: "Riyadh, Saudi Arabia",
+    location: "Rawalpindi, Pakistan",
     period: "Jul 2024 - Aug 2025",
     description: [
       "Developed & maintained 5+ web using React and mobile apps using React Native & Python (Flask/Django), improving deployment time by 30%",
