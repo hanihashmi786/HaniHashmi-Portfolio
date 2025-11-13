@@ -73,6 +73,16 @@ const projects = [
     status: "in-progress",
     statusText: "In Progress",
   },
+  {
+    title: "Mobility",
+    description: "A React-based portfolio website application for Otaishan Trading Co. and Otaishan Trading Co. is a basically online oil changing service provider",
+    tech: ["React", "TypeScript", "Responsive CSS"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/hanihashmi786/Mobility",
+    codeConfidential: true,
+    status: "in-progress",
+    statusText: "In Progress",
+  },
 ]
 
 export function ProjectsSection() {

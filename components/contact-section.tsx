@@ -44,7 +44,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-serif font-semibold text-card-foreground mb-2">WhatsApp</h3>
-                  <p className="text-muted-foreground">+966 573542790</p>
+                  <p className="text-muted-foreground">+966 539 429 379</p>
                 </div>
                 <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                   Chat on WhatsApp
