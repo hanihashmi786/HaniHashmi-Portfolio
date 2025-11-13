@@ -12,6 +12,7 @@ const experiences = [
     description: [
       "Providing services as Full Stack Developer",
       "Developed the mobile app 'Rujo-illalah' using React Native",
+      "Working on the portfolio website for Otaishan Trading Co. using React and TypeScript",
     ],
     current: true,
   },
