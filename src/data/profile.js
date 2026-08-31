@@ -6,6 +6,8 @@ export const profile = {
   lastName: 'Hashmi',
   fullName: 'Hani Hashmi',
   title: 'Software Engineer',
+  // Same portrait the About page uses, so the card and the site never drift.
+  photo: '/images/profile-about.jpeg',
   tagline: 'Full Stack Developer',
   org: 'Freelance / Independent',
   email: 'hanimhashmi121@gmail.com',

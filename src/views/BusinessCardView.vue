@@ -48,9 +48,19 @@
                   </svg>
                 </div>
 
-                <div class="mt-auto text-left">
-                  <h2 class="card-name">{{ p.fullName }}</h2>
-                  <p class="card-role">{{ p.tagline }}</p>
+                <div class="mt-auto flex items-center gap-3 text-left">
+                  <img
+                    class="card-photo"
+                    :src="p.photo"
+                    :alt="p.fullName"
+                    width="128"
+                    height="128"
+                    decoding="async"
+                  />
+                  <div class="min-w-0">
+                    <h2 class="card-name">{{ p.fullName }}</h2>
+                    <p class="card-role">{{ p.tagline }}</p>
+                  </div>
                 </div>
 
                 <div class="divider"></div>
@@ -211,6 +221,14 @@
               </svg>
               Copy link
             </button>
+            <button type="button" class="btn btn-ghost" @click="downloadPdf" :disabled="pdfBusy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 13h6M9 17h3M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5" />
+              </svg>
+              {{ pdfBusy ? 'Preparing…' : 'Download PDF' }}
+            </button>
             <button type="button" class="btn btn-ghost" @click="downloadQr">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -258,6 +276,7 @@ export default {
       p: profile,
       flipped: false,
       zoomed: false,
+      pdfBusy: false,
       mode: 'vcard',
       origin: '',
       toast: '',
@@ -366,6 +385,23 @@ export default {
       a.click()
       a.remove()
       this.showToast('QR code downloaded')
+    },
+    async downloadPdf() {
+      // jsPDF is only needed on this one click, so it stays out of the bundle
+      // until then; the guard stops a double tap building two documents.
+      if (this.pdfBusy) return
+      const qr = this.$refs.qr
+      if (!qr) return
+      this.pdfBusy = true
+      try {
+        const { downloadCardPdf } = await import('../utils/cardPdf.js')
+        await downloadCardPdf({ qr: qr.qr, moduleCount: qr.count, url: this.url })
+        this.showToast('Business card PDF downloaded')
+      } catch {
+        this.showToast('Could not build the PDF, please try again')
+      } finally {
+        this.pdfBusy = false
+      }
     },
     async share() {
       const payload = {
@@ -498,6 +534,16 @@ export default {
 .chip {
   width: clamp(30px, 8.5%, 40px);
   height: auto;
+}
+
+.card-photo {
+  flex: none;
+  width: clamp(42px, 14%, 62px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(var(--accent-rgb), 0.45);
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.6);
 }
 
 .card-name {
@@ -692,6 +738,17 @@ export default {
   transform: translateY(-2px);
   background: var(--bg-card-hover);
   color: var(--text);
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btn[disabled]:hover {
+  transform: none;
+  background: var(--bg-card);
+  color: var(--text-muted);
 }
 
 .btn-accent {
