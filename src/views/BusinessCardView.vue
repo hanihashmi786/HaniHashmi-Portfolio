@@ -403,6 +403,9 @@ export default {
   width: min(94vw, 460px);
   --mx: 50%;
   --my: 50%;
+  --flip: 0.85s;
+  /* The faces swap exactly when the card is edge-on and nothing is legible. */
+  --flip-half: 0.425s;
 }
 
 .card-3d {
@@ -410,12 +413,8 @@ export default {
   width: 100%;
   aspect-ratio: 1.586 / 1;
   transform-style: preserve-3d;
-  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform var(--flip) cubic-bezier(0.2, 0.8, 0.2, 1);
   cursor: pointer;
-}
-
-.card-3d.is-flipped {
-  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .face {
@@ -429,6 +428,16 @@ export default {
   border: 1px solid var(--border);
   box-shadow: 0 18px 45px -12px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(var(--accent-rgb), 0.08);
+  /* backface-visibility alone is not reliable here: a face that clips its own
+     overflow gets flattened by some engines (notably WebKit) and both sides end
+     up painting at once. Stack the faces and hide the turned-away one outright
+     rather than trusting the backface rule; the swap is delayed to the halfway
+     point of the flip, where the card is edge-on, so it is never visible. */
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0s linear var(--flip-half), visibility 0s linear var(--flip-half),
+    z-index 0s linear var(--flip-half);
 }
 
 .face-back {
@@ -437,6 +446,9 @@ export default {
 
 .face[aria-hidden='true'] {
   pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .face-inner {
@@ -796,7 +808,8 @@ export default {
 @media (prefers-reduced-motion: reduce) {
   .card-3d,
   .btn,
-  .sheen {
+  .sheen,
+  .face {
     transition: none;
   }
 }
@@ -815,11 +828,15 @@ export default {
     transform: none !important;
   }
 
-  .face {
+  /* Both sides go on the sheet, so undo the turned-away face's hiding. */
+  .face,
+  .face[aria-hidden='true'] {
     position: relative;
     box-shadow: none;
     border: 1px solid #999;
     page-break-inside: avoid;
+    opacity: 1;
+    visibility: visible;
   }
 
   .face-back {
