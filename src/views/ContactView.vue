@@ -10,6 +10,25 @@
         </div>
       </header>
 
+      <!-- Digital business card entry point -->
+      <router-link to="/card" class="card-banner fadein-bot" aria-label="Open my digital business card">
+        <div class="banner-qr">
+          <QrCode :value="bannerQrValue" :size="96" :margin="2" label="QR code linking to my digital business card" />
+        </div>
+        <div class="banner-copy">
+          <p class="banner-kicker">Digital Business Card</p>
+          <h3 class="banner-title">Scan once, saved forever</h3>
+          <p class="banner-sub">
+            Open my interactive card and scan the QR to drop me straight into your contacts.
+          </p>
+        </div>
+        <span class="banner-arrow" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </span>
+      </router-link>
+
       <section class="mt-10">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
           <!-- Email -->
@@ -93,8 +112,24 @@
 </template>
 
 <script>
+import QrCode from '../components/QrCode.vue'
+
 export default {
-  name: 'ContactView'
+  name: 'ContactView',
+  components: { QrCode },
+  data() {
+    return { origin: '' }
+  },
+  computed: {
+    // The URL payload is 29 modules vs 57 for a vCard, so it still scans at
+    // this thumbnail size. Scanning it lands on the full card page.
+    bannerQrValue() {
+      return this.origin ? `${this.origin}/card` : '/card'
+    }
+  },
+  mounted() {
+    this.origin = window.location.origin
+  }
 }
 </script>
 
@@ -102,5 +137,81 @@ export default {
 .contact-card:hover {
   transform: translateY(-4px);
   background-color: var(--bg-card-hover) !important;
+}
+
+.card-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 56rem;
+  margin: 2.5rem auto 0;
+  padding: 18px 20px;
+  border-radius: 18px;
+  text-align: left;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.card-banner:hover {
+  transform: translateY(-4px);
+  background-color: var(--bg-card-hover);
+  border-color: rgba(var(--accent-rgb), 0.45);
+}
+
+.banner-qr {
+  flex: none;
+  padding: 7px;
+  border-radius: 12px;
+  /* Light panel in both themes so the code stays scannable. */
+  background: #ffffff;
+  line-height: 0;
+}
+
+.banner-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.banner-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.banner-title {
+  margin-top: 2px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.banner-sub {
+  margin-top: 3px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.banner-arrow {
+  flex: none;
+  color: var(--accent);
+}
+
+.banner-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 640px) {
+  .card-banner {
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .banner-sub {
+    display: none;
+  }
 }
 </style>

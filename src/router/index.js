@@ -34,6 +34,12 @@ const routes = [
     meta: { title: 'Contact' }
   },
   {
+    path: '/card',
+    name: 'card',
+    component: () => import('../views/BusinessCardView.vue'),
+    meta: { title: 'Business Card' }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('../views/NotFoundView.vue'),
