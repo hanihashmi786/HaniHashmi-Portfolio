@@ -99,7 +99,15 @@
                   @click.stop="zoomed = true"
                   :aria-label="`Enlarge QR code: ${modeLabel}`"
                 >
-                  <QrCode ref="qr" :value="qrValue" :size="qrSize" :label="modeLabel" />
+                  <QrCode
+                    ref="qr"
+                    ec="H"
+                    :value="qrValue"
+                    :size="qrSize"
+                    :label="modeLabel"
+                    :logo="badge"
+                    :logo-scale="QR_LOGO_SCALE"
+                  />
                 </button>
 
                 <div class="back-details text-left">
@@ -249,7 +257,14 @@
     <div v-if="zoomed" class="qr-modal" @click="zoomed = false">
       <div class="qr-modal-inner" role="dialog" aria-modal="true" aria-label="QR code" @click.stop>
         <div class="qr-modal-panel">
-          <QrCode :value="qrValue" :size="320" :label="modeLabel" />
+          <QrCode
+            ec="H"
+            :value="qrValue"
+            :size="320"
+            :label="modeLabel"
+            :logo="badge"
+            :logo-scale="QR_LOGO_SCALE"
+          />
         </div>
         <p class="qr-modal-title">{{ p.fullName }}</p>
         <p class="qr-modal-sub">{{ modeHint }}</p>
@@ -267,6 +282,7 @@
 <script>
 import QrCode from '../components/QrCode.vue'
 import { profile, buildVCard, cardUrl } from '../data/profile.js'
+import { circularDataUrl, QR_LOGO_SCALE } from '../utils/cardArt.js'
 
 export default {
   name: 'BusinessCardView',
@@ -274,6 +290,11 @@ export default {
   data() {
     return {
       p: profile,
+      QR_LOGO_SCALE,
+      // Portrait for the middle of the QR, matted to the symbol's white so
+      // the square image blends into its round plate. Empty until it loads;
+      // the code renders fine without it in the meantime.
+      badge: '',
       flipped: false,
       zoomed: false,
       pdfBusy: false,
@@ -319,8 +340,9 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     this.origin = window.location.origin
+    this.badge = (await circularDataUrl(this.p.photo, { px: 512, matte: '#ffffff' })) || ''
     this.reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     window.addEventListener('keydown', this.onKeydown)
   },
@@ -374,12 +396,12 @@ export default {
       URL.revokeObjectURL(href)
       this.showToast('Contact card downloaded')
     },
-    downloadQr() {
+    async downloadQr() {
       // Both faces stay mounted, so the ref resolves whichever side is showing.
       const qr = this.$refs.qr
       if (!qr) return
       const a = document.createElement('a')
-      a.href = qr.toPngDataUrl()
+      a.href = await qr.toPngDataUrl()
       a.download = `hani-hashmi-qr-${this.mode}.png`
       document.body.appendChild(a)
       a.click()

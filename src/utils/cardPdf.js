@@ -4,6 +4,7 @@
 // into a bitmap, so it stays crisp at any zoom and at 300+ dpi.
 
 import { profile } from '../data/profile.js'
+import { badgeSide, circularDataUrl, QR_LOGO_SCALE } from './cardArt.js'
 
 // CR80 / standard business card. 53.98mm rounded to the printer-friendly 54.
 const CARD_W = 85.6
@@ -20,48 +21,9 @@ const INK = '#0b0b0c'
 const PANEL = '#ffffff'
 
 /**
- * Circle-crop the portrait on a canvas and hand back a data URL.
- * Returns null if the image cannot be loaded so the PDF still generates,
- * just without the photo.
- */
-async function circularPhoto(src, px = 512) {
-  try {
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.src = src
-    await img.decode()
-
-    const canvas = document.createElement('canvas')
-    canvas.width = px
-    canvas.height = px
-    const ctx = canvas.getContext('2d')
-
-    // Matte the transparent corners to the card colour: the PDF has no
-    // compositing behind the image, so leaving them clear prints white.
-    ctx.fillStyle = BG
-    ctx.fillRect(0, 0, px, px)
-
-    ctx.save()
-    ctx.beginPath()
-    ctx.arc(px / 2, px / 2, px / 2, 0, Math.PI * 2)
-    ctx.clip()
-    // object-fit: cover, so a non-square source is never squashed.
-    const scale = Math.max(px / img.naturalWidth, px / img.naturalHeight)
-    const w = img.naturalWidth * scale
-    const h = img.naturalHeight * scale
-    ctx.drawImage(img, (px - w) / 2, (px - h) / 2, w, h)
-    ctx.restore()
-
-    return canvas.toDataURL('image/png')
-  } catch {
-    return null
-  }
-}
-
-/**
- * Collapse each row of dark modules into horizontal runs. A 57x57 symbol is
- * ~1600 individual squares; as runs it is a few hundred rectangles, which
- * keeps the PDF small without changing what a scanner sees.
+ * Collapse each row of dark modules into horizontal runs. The card's 77x77
+ * symbol is a few thousand individual squares; as runs it is a few hundred
+ * rectangles, which keeps the PDF small without changing what a scanner sees.
  */
 function darkRuns(qr, n) {
   const runs = []
@@ -142,21 +104,22 @@ function drawFront(doc, photo) {
   doc.text(p.stack.join('  ·  '), 6, 50.6)
 }
 
-function drawBack(doc, qr, moduleCount, url) {
+function drawBack(doc, qr, moduleCount, url, badge) {
   const p = profile
 
   doc.setFillColor(BG)
   doc.rect(0, 0, CARD_W, CARD_H, 'F')
 
   // White panel behind the symbol: the quiet zone has to stay light or
-  // scanners lose the finder patterns.
-  const panelX = 4.5
-  const panelY = 6
-  const panel = 42
+  // scanners lose the finder patterns. Sized to fill the card's height so the
+  // level-H symbol still prints at a comfortable module size.
+  const panelX = 4
+  const panelY = 4
+  const panel = 46
   doc.setFillColor(PANEL)
   doc.roundedRect(panelX, panelY, panel, panel, 2.5, 2.5, 'F')
 
-  const pad = 2.6
+  const pad = 2.8
   const box = panel - pad * 2
   const unit = box / moduleCount
   doc.setFillColor(INK)
@@ -164,8 +127,18 @@ function drawBack(doc, qr, moduleCount, url) {
     doc.rect(panelX + pad + c * unit, panelY + pad + r * unit, len * unit, unit, 'F')
   }
 
-  const x = 50.5
-  const colW = CARD_W - x - 5
+  // Centre badge, drawn over the modules exactly as the on-screen code does.
+  const mid = panelX + pad + box / 2
+  const plate = (moduleCount * QR_LOGO_SCALE * unit) / 2
+  doc.setFillColor(PANEL)
+  doc.circle(mid, mid, plate, 'F')
+  if (badge) {
+    const side = badgeSide(plate)
+    doc.addImage(badge, 'PNG', mid - side / 2, mid - side / 2, side, side)
+  }
+
+  const x = 53.5
+  const colW = CARD_W - x - 4
 
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(10)
@@ -217,9 +190,16 @@ export async function downloadCardPdf({ qr, moduleCount, url }) {
     subject: profile.title
   })
 
-  drawFront(doc, await circularPhoto(profile.photo))
+  // Two mattes: the front portrait sits on the card, the QR badge sits on the
+  // symbol's white plate, and neither renderer is asked to composite alpha.
+  const [photo, badge] = await Promise.all([
+    circularDataUrl(profile.photo, { matte: BG }),
+    circularDataUrl(profile.photo, { matte: PANEL })
+  ])
+
+  drawFront(doc, photo)
   doc.addPage([CARD_W, CARD_H], 'landscape')
-  drawBack(doc, qr, moduleCount, url)
+  drawBack(doc, qr, moduleCount, url, badge)
 
   doc.save('Hani-Hashmi-Business-Card.pdf')
 }
