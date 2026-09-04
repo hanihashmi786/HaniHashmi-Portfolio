@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="BAHHR">
+  <rect width="48" height="48" rx="10" fill="#023047"/>
+  <g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9.5 25.5a14.5 14.5 0 1 1 29 0" stroke="#00B4D8"/>
+    <path d="M6 25.5h36" stroke="#F4A723"/>
+    <path d="M15 25.5c4-1 6.5-6 9.5-10l8 10" stroke="#FFFFFF"/>
+    <path d="M12 35c4-2.4 8-2.4 12 0s8 2.4 12 0" stroke="#90E0EF"/>
+  </g>
+</svg>

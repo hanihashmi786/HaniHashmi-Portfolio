@@ -66,10 +66,10 @@ export default {
         </div>
         <div class="flex flex-col gap-4">
           <p class="leading-relaxed fadein-left fadeins-1" style="color: var(--text-muted);">
-            I am a Software Engineer with around 3 years of experience in Full Stack Development, IT Support, Software Support, and Networking. Skilled in React.js, React Native, Python (Flask/Django), and the MERN stack, with a solid foundation in AI, Machine Learning, and NLP.
+            I am a Product Engineer with 3 years of experience building and shipping full-stack products across mobile, web and backend. Strong in TypeScript, React Native, Next.js, Node.js and Django, with bilingual Arabic/English (RTL) product experience and a solid foundation in AI and Machine Learning.
           </p>
           <p class="leading-relaxed fadein-left fadeins-2" style="color: var(--text-muted);">
-            I have contributed to multiple successful projects including Break Portal, Call Loom, Data Scrubber, Dial Loom, Taskio, Rujo-illalah and am currently working on Motorek (Web & Mobile App). My work has improved deployment time by 30%, increased system reliability by 25%, and reduced issue resolution time by 40%.
+            At Otaishan Investments in Riyadh I own end-to-end delivery of four production platforms for the Saudi market: Mrafqk, BAHHR, Motorekcs and The Perfect House, spanning marketplace, booking, real-time and on-demand service domains. Before that I shipped Call Loom, Break Portal, Data Scrubber, Dial Loom and Taskio at Mars BPO, and built Gogo Sports and the Mutma'innah app independently.
           </p>
         </div>
       </section>

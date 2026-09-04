@@ -13,7 +13,7 @@
         </h1>
       </div>
       <p class="pr-4 fade-in-from-left leading-relaxed text-sm md:text-base max-w-lg" style="color: var(--text-muted);">
-        Software Engineer with around 3 years of experience in Full Stack Development. Skilled in React.js, React Native, Python (Flask/Django), and the MERN stack.
+        Product Engineer with 3 years of experience building and shipping full-stack products across mobile, web and backend. Strong in TypeScript, React Native, Next.js, Node.js and Django, with bilingual Arabic/English (RTL) product experience.
       </p>
       <p class="text-sm fade-in-from-left flex items-center justify-center md:justify-start gap-1 pt-2" style="color: var(--text-muted);">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" style="color: var(--accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
@@ -50,14 +50,19 @@
       </div>
     </div>
   </main>
+
+  <CurrentlyWorkingOn />
 </template>
 
 <script>
+import CurrentlyWorkingOn from '../components/CurrentlyWorkingOn.vue'
+
 export default {
   name: 'HomeView',
+  components: { CurrentlyWorkingOn },
   data() {
     return {
-      toRotate: ["Full Stack Developer", "Software Engineer", "React Native Dev", "Python Developer"],
+      toRotate: ["Product Engineer", "Full-Stack Developer", "React Native Dev", "Next.js & Node.js Dev"],
       period: 2000,
       txt: '',
       loopNum: 0,

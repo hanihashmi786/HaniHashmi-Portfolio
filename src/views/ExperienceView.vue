@@ -1,71 +1,138 @@
 <script>
+import ExperienceCard from '../components/ExperienceCard.vue'
+
 export default {
+  components: { ExperienceCard },
   data() {
     return {
-      expandedIndex: null,
+      expandedIndex: 0,
       experiences: [
         {
-          role: 'Full Stack Developer',
-          company: 'Freelancing',
+          role: 'Product Developer (Full-Stack)',
+          company: 'Otaishan Investments',
           period: 'Oct 2025 - Present',
           location: 'Riyadh, Saudi Arabia',
           current: true,
+          summary:
+            "Own end-to-end delivery of the company's digital products: frontend, backend, APIs, database, admin platforms and marketing sites. Four production platforms for the Saudi market, spanning marketplace, booking, real-time and on-demand service domains.",
+          products: [
+            {
+              name: 'Mrafqk',
+              tagline: 'Medical companion booking platform',
+              status: 'Internal testing',
+              statusColor: '#f59e0b',
+              color: '#14b8a6',
+              url: 'https://mrafqk.com',
+              stack: 'TypeScript · React Native (Expo) · Next.js · Node.js/Express · tRPC · PostgreSQL · Redis · WebSockets'
+            },
+            {
+              name: 'BAHHR',
+              tagline: 'Vehicle & adventure rental marketplace',
+              status: 'Pre-launch',
+              statusColor: '#38bdf8',
+              color: '#00b4d8',
+              url: 'https://www.bahhr.net',
+              stack: 'React Native (Expo) · NestJS · PostgreSQL · Prisma · Next.js · Socket.IO · TypeScript · Tailwind CSS'
+            },
+            {
+              name: 'Motorekcs',
+              tagline: 'On-demand automotive service platform',
+              status: 'In production',
+              statusColor: '#22c55e',
+              color: '#f97316',
+              url: 'https://motorekcs.com',
+              stack: 'Next.js · React · TypeScript · Django REST Framework · PostgreSQL · React Native · Tailwind CSS'
+            },
+            {
+              name: 'The Perfect House',
+              tagline: 'Architecture & construction platform',
+              status: 'Live on Google Play',
+              statusColor: '#22c55e',
+              color: '#eab308',
+              url: 'https://theperfecthouse.co',
+              stack: 'React Native (Expo) · Next.js · Three.js/WebGL · TypeScript · Node.js serverless · Vercel'
+            }
+          ],
           responsibilities: [
-            'Developed the mobile app "Rujo-illalah" using React Native',
-            'Currently working on "Motorek" web using Next.js and mobile app using React Native, with Django backend',
-            'Developed the frontend of "Gogo Sports" using Next.js'
+            'Built Mrafqk end-to-end: cross-platform React Native (Expo) app, type-safe tRPC and Express backend, PostgreSQL data layer, Next.js admin platform and marketing site',
+            'Engineered real-time bidding and chat over WebSockets with Redis pub/sub, enabling live matching between users and verified medical companions',
+            'Architected the BAHHR multi-category rental marketplace, with a booking engine that validates availability and overlaps to prevent double-booking across concurrent reservations',
+            'Delivered real-time chat and notifications via Socket.IO, with JWT/OTP authentication, MFA and role-based access control across mobile, admin and API layers',
+            'Built the Motorekcs Django REST Framework backend, Next.js customer platform and React Native app, integrating payments and push notifications',
+            'Engineered The Perfect House web platform and Expo app, including 3D architectural experiences in Three.js/WebGL, technical SEO and serverless deployment on Vercel'
           ],
           impact: [
-            'Building production-grade cross-platform applications serving real users',
-            'End-to-end ownership from frontend to backend deployment'
-          ]
+            'Four production platforms for the Saudi market delivered end-to-end, from first commit to release',
+            'Booking, payment and payout workflows covering the full request-to-settlement lifecycle',
+            'Full English/Arabic internationalisation with RTL support, shipped on Vercel with GitHub Actions CI'
+          ],
+          stack: ['TypeScript', 'React Native (Expo)', 'Next.js', 'Node.js', 'Express', 'NestJS', 'tRPC', 'Django REST Framework', 'PostgreSQL', 'Prisma', 'Redis', 'WebSockets', 'Socket.IO', 'Three.js', 'Tailwind CSS', 'Vercel', 'GitHub Actions']
         },
         {
-          role: 'Full Stack Developer',
+          role: 'Freelance Full-Stack Developer',
+          company: 'Independent Contractor',
+          period: 'Aug 2025 - Mar 2026',
+          location: 'Riyadh, Saudi Arabia',
+          current: false,
+          note: 'Concurrent with the Otaishan Investments role',
+          responsibilities: [
+            'Built the customer-facing Gogo Sports platform (gogosports.online) in Next.js with a backend-free architecture, routing the order flow directly through WhatsApp',
+            'Delivered and deployed 3+ client portfolio websites with responsive design and live hosting'
+          ],
+          impact: [
+            'A production storefront live with no backend to maintain, orders flowing straight to WhatsApp',
+            'Every client site delivered live, responsive and on time'
+          ],
+          stack: ['Next.js', 'React', 'Tailwind CSS', 'Vercel']
+        },
+        {
+          role: 'Full-Stack Developer',
           company: 'Mars BPO Pvt. Ltd.',
           period: 'Jul 2024 - Aug 2025',
           location: 'Rawalpindi, Pakistan',
           current: false,
           responsibilities: [
-            'Developed & maintained 5+ web apps using React and mobile apps using React Native & Python (Flask/Django)',
-            'Used PostgreSQL for data management, improving deployment time by 30%',
-            'Collaborated with cross-functional teams to build scalable solutions'
+            "Built the React Native mobile app for Call Loom (callloom.com), the company's flagship commercial AI call-tracking and IVR platform, integrating the product APIs and shipping the app to the Google Play Store",
+            'Developed and maintained 5+ web applications in React and mobile applications in React Native, backed by Python (Flask/Django) services and PostgreSQL',
+            'Contributed to further products including Break Portal, Data Scrubber (Blacklist Alliance API integration), Dial Loom and Taskio'
           ],
           impact: [
-            '25% increase in system reliability through scalable architecture',
-            'Reduced issue resolution time by 40% via optimized debugging processes'
-          ]
+            'Improved application response times through Redis caching and database query optimisation',
+            'Reduced issue resolution time by refactoring the backend codebase and streamlining debugging and deployment'
+          ],
+          stack: ['React', 'React Native', 'Python', 'Flask', 'Django', 'PostgreSQL', 'Redis', 'AWS']
         },
         {
-          role: 'Full Stack Developer',
-          company: 'Freelancing',
+          role: 'Freelance Full-Stack Developer',
+          company: 'Independent Contractor',
           period: 'Sep 2023 - Jul 2024',
           location: 'Islamabad, Pakistan',
           current: false,
           responsibilities: [
-            'Developed a UI/UX dashboard using React.js',
-            'Built a mobile app for online clothing sales using React Native',
-            'Created an e-commerce store for an international student project with MERN stack'
+            'Built an e-commerce store using the MERN stack',
+            'Developed a React Native mobile application for online clothing sales',
+            'Designed and built a React.js UI/UX dashboard'
           ],
           impact: [
-            'Delivered multiple client projects independently on time',
-            'Built a voice changer website using Python as a final year project'
-          ]
+            'Delivered multiple client projects independently, end-to-end and on time'
+          ],
+          stack: ['MongoDB', 'Express', 'React', 'Node.js', 'React Native']
         },
         {
-          role: 'JavaScript Developer - Internship',
+          role: 'JavaScript Developer (Internship)',
           company: 'SOFTOO Pvt. Ltd.',
           period: 'Jul 2023 - Sep 2023',
           location: 'Islamabad, Pakistan',
           current: false,
           responsibilities: [
-            'Completed intensive Node.js training during the internship',
-            'Enhanced logical thinking & problem-solving by independently tackling coding challenges'
+            'Completed intensive Node.js training',
+            'Contributed to backend development tasks and participated in peer code review'
           ],
           impact: [
             'Contributed to a collaborative team culture by sharing solutions',
             'Improved peer review quality through active participation'
-          ]
+          ],
+          stack: ['JavaScript', 'Node.js']
         }
       ],
       education: {
@@ -74,7 +141,7 @@ export default {
         period: '2020 - 2024',
         location: 'Islamabad, Pakistan',
         highlights: [
-          'Final Year Project: Detection of Brain Tumor using MR Images (Python, TensorFlow/Keras, OpenCV)',
+          'Final Year Project, Brain Tumour Detection from MRI: AI medical imaging system in Python, TensorFlow/Keras and OpenCV using CNN, VGG-16, ResNet-50 and Inception-V3 for multi-class tumour classification, delivered as a Flask web application',
           'Focused on Full Stack Development, AI/ML, and Mobile App Development',
           'Strong foundation in Data Structures, Algorithms, and System Design'
         ]
@@ -84,6 +151,9 @@ export default {
   methods: {
     toggleExpand(index) {
       this.expandedIndex = this.expandedIndex === index ? null : index;
+    },
+    delayClass(index) {
+      return 'fadeins-' + Math.min(index + 1, 5);
     }
   }
 }
@@ -109,7 +179,7 @@ export default {
         <!-- Center vertical line -->
         <div class="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2" style="background-color: var(--accent);"></div>
 
-        <div v-for="(exp, index) in experiences" :key="index" class="relative mb-12" :class="['fadein-left', index === 0 ? 'fadeins-1' : index === 1 ? 'fadeins-2' : index === 2 ? 'fadeins-3' : 'fadeins-4']">
+        <div v-for="(exp, index) in experiences" :key="index" class="relative mb-12" :class="['fadein-left', delayClass(index)]">
           <!-- Timeline dot -->
           <div class="absolute left-1/2 top-6 w-3 h-3 rounded-full -translate-x-1/2 z-10"
             style="background-color: var(--accent);"
@@ -119,45 +189,7 @@ export default {
           <!-- LEFT card (even index) -->
           <div v-if="index % 2 === 0" class="flex items-start">
             <div class="w-[47%] pr-8">
-              <div class="rounded-xl p-5 transition-all duration-300 cursor-pointer"
-                style="background-color: var(--bg-card); border: 1px solid var(--border);"
-                @click="toggleExpand(index)">
-                <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: rgba(var(--accent-rgb), 0.1);">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" style="color: var(--accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                  <div class="flex-grow">
-                    <p class="text-xs font-medium" style="color: var(--accent);">{{ exp.period }}</p>
-                    <h3 class="text-base font-bold mt-0.5" style="color: var(--text);">{{ exp.role }}</h3>
-                    <p class="text-xs mt-1 flex items-center gap-1" style="color: var(--text-muted);">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                      {{ exp.company }} | {{ exp.location }}
-                    </p>
-                  </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 transition-transform duration-300" :class="expandedIndex === index ? 'rotate-180' : ''" style="color: var(--text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-                <!-- Expanded content -->
-                <div v-if="expandedIndex === index" class="mt-4 pt-4" style="border-top: 1px solid var(--border);">
-                  <h4 class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">Key Responsibilities</h4>
-                  <ul class="flex flex-col gap-1.5 mb-3">
-                    <li v-for="(r, ri) in exp.responsibilities" :key="ri" class="text-sm leading-relaxed flex items-start gap-2" style="color: var(--text-muted);">
-                      <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style="background-color: var(--accent);"></span>
-                      {{ r }}
-                    </li>
-                  </ul>
-                  <h4 class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">Executive Impact</h4>
-                  <ul class="flex flex-col gap-1.5">
-                    <li v-for="(i, ii) in exp.impact" :key="ii" class="text-sm leading-relaxed flex items-start gap-2" style="color: var(--text-muted);">
-                      <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style="background-color: var(--accent);"></span>
-                      {{ i }}
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <ExperienceCard :exp="exp" :expanded="expandedIndex === index" @toggle="toggleExpand(index)" />
             </div>
             <div class="w-[6%]"></div>
             <div class="w-[47%]"></div>
@@ -168,45 +200,7 @@ export default {
             <div class="w-[47%]"></div>
             <div class="w-[6%]"></div>
             <div class="w-[47%] pl-8">
-              <div class="rounded-xl p-5 transition-all duration-300 cursor-pointer"
-                style="background-color: var(--bg-card); border: 1px solid var(--border);"
-                @click="toggleExpand(index)">
-                <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: rgba(var(--accent-rgb), 0.1);">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" style="color: var(--accent);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                  <div class="flex-grow">
-                    <p class="text-xs font-medium" style="color: var(--accent);">{{ exp.period }}</p>
-                    <h3 class="text-base font-bold mt-0.5" style="color: var(--text);">{{ exp.role }}</h3>
-                    <p class="text-xs mt-1 flex items-center gap-1" style="color: var(--text-muted);">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                      {{ exp.company }} | {{ exp.location }}
-                    </p>
-                  </div>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 transition-transform duration-300" :class="expandedIndex === index ? 'rotate-180' : ''" style="color: var(--text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-                <!-- Expanded content -->
-                <div v-if="expandedIndex === index" class="mt-4 pt-4" style="border-top: 1px solid var(--border);">
-                  <h4 class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">Key Responsibilities</h4>
-                  <ul class="flex flex-col gap-1.5 mb-3">
-                    <li v-for="(r, ri) in exp.responsibilities" :key="ri" class="text-sm leading-relaxed flex items-start gap-2" style="color: var(--text-muted);">
-                      <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style="background-color: var(--accent);"></span>
-                      {{ r }}
-                    </li>
-                  </ul>
-                  <h4 class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">Executive Impact</h4>
-                  <ul class="flex flex-col gap-1.5">
-                    <li v-for="(i, ii) in exp.impact" :key="ii" class="text-sm leading-relaxed flex items-start gap-2" style="color: var(--text-muted);">
-                      <span class="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style="background-color: var(--accent);"></span>
-                      {{ i }}
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <ExperienceCard :exp="exp" :expanded="expandedIndex === index" @toggle="toggleExpand(index)" />
             </div>
           </div>
         </div>
@@ -215,39 +209,10 @@ export default {
       <!-- Mobile Timeline (stacked) -->
       <div class="md:hidden relative">
         <div class="absolute left-4 top-0 bottom-0 w-[2px]" style="background-color: rgba(var(--accent-rgb), 0.3);"></div>
-        <div v-for="(exp, index) in experiences" :key="'m'+index" class="relative mb-6 ml-10" :class="['fadein-left', index === 0 ? 'fadeins-1' : index === 1 ? 'fadeins-2' : index === 2 ? 'fadeins-3' : 'fadeins-4']">
+        <div v-for="(exp, index) in experiences" :key="'m'+index" class="relative mb-6 ml-10" :class="['fadein-left', delayClass(index)]">
           <div class="absolute -left-[1.75rem] top-4 w-3 h-3 rounded-full" style="background-color: var(--accent);"
             :style="exp.current ? { boxShadow: '0 0 0 4px rgba(var(--accent-rgb), 0.2)' } : {}"></div>
-          <div class="rounded-xl p-4 cursor-pointer"
-            style="background-color: var(--bg-card); border: 1px solid var(--border);"
-            @click="toggleExpand(index)">
-            <div class="flex items-start justify-between">
-              <div>
-                <p class="text-xs font-medium" style="color: var(--accent);">{{ exp.period }}</p>
-                <h3 class="text-sm font-bold mt-0.5" style="color: var(--text);">{{ exp.role }}</h3>
-                <p class="text-xs mt-1" style="color: var(--text-muted);">{{ exp.company }} | {{ exp.location }}</p>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0 transition-transform duration-300" :class="expandedIndex === index ? 'rotate-180' : ''" style="color: var(--text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-            <div v-if="expandedIndex === index" class="mt-3 pt-3" style="border-top: 1px solid var(--border);">
-              <h4 class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">Key Responsibilities</h4>
-              <ul class="flex flex-col gap-1.5 mb-3">
-                <li v-for="(r, ri) in exp.responsibilities" :key="ri" class="text-xs leading-relaxed flex items-start gap-2" style="color: var(--text-muted);">
-                  <span class="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style="background-color: var(--accent);"></span>
-                  {{ r }}
-                </li>
-              </ul>
-              <h4 class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--accent);">Executive Impact</h4>
-              <ul class="flex flex-col gap-1.5">
-                <li v-for="(i, ii) in exp.impact" :key="ii" class="text-xs leading-relaxed flex items-start gap-2" style="color: var(--text-muted);">
-                  <span class="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style="background-color: var(--accent);"></span>
-                  {{ i }}
-                </li>
-              </ul>
-            </div>
-          </div>
+          <ExperienceCard :exp="exp" :expanded="expandedIndex === index" compact @toggle="toggleExpand(index)" />
         </div>
       </div>
     </div>
