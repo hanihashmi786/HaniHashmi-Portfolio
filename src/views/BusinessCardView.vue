@@ -192,7 +192,7 @@
             </button>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full">
+          <div class="action-grid">
             <a :href="p.whatsapp" target="_blank" rel="noopener" class="btn btn-ghost btn-wa">
               <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none">
                 <path :d="waPath" />
@@ -412,12 +412,12 @@ export default {
       // jsPDF is only needed on this one click, so it stays out of the bundle
       // until then; the guard stops a double tap building two documents.
       if (this.pdfBusy) return
-      const qr = this.$refs.qr
-      if (!qr) return
       this.pdfBusy = true
       try {
         const { downloadCardPdf } = await import('../utils/cardPdf.js')
-        await downloadCardPdf({ qr: qr.qr, moduleCount: qr.count, url: this.url })
+        // No QR passed: the PDF always prints the contact vCard, independent
+        // of which mode the on-screen code is showing.
+        await downloadCardPdf({ url: this.url })
         this.showToast('Business card PDF downloaded')
       } catch {
         this.showToast('Could not build the PDF, please try again')
@@ -784,6 +784,21 @@ export default {
 
 .btn-wa:hover {
   border-color: rgba(37, 211, 102, 0.5);
+}
+
+/* Wrapping beats a fixed column count here: with an odd number of actions a
+   grid strands the last one against the left edge, whereas each wrapped row
+   stays centred under the card. */
+.action-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.action-grid > .btn {
+  flex: 0 1 142px;
 }
 
 .mode-switch {

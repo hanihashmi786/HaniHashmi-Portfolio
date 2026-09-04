@@ -3,7 +3,8 @@
 // drawn natively (text stays text, the QR stays vector) rather than screenshot
 // into a bitmap, so it stays crisp at any zoom and at 300+ dpi.
 
-import { profile } from '../data/profile.js'
+import qrcode from 'qrcode-generator'
+import { profile, buildVCard } from '../data/profile.js'
 import { badgeSide, circularDataUrl, QR_LOGO_SCALE } from './cardArt.js'
 
 // CR80 / standard business card. 53.98mm rounded to the printer-friendly 54.
@@ -171,12 +172,22 @@ function drawBack(doc, qr, moduleCount, url, badge) {
 /**
  * Build and download the card as a PDF.
  *
- * @param {object} qr           A made qrcode-generator instance.
- * @param {number} moduleCount  Its module count, so the symbol scales exactly.
- * @param {string} url          The live card URL, printed on the back.
+ * The symbol is built here rather than taken from the page: the printed card
+ * always carries the contact vCard, whatever the on-screen QR toggle happens
+ * to be showing. The caption under it says "Scan to save my contact", and a
+ * print run should not silently inherit a transient UI setting.
+ *
+ * @param {string} url  The live card URL, embedded in the vCard and printed
+ *                      on the back.
  */
-export async function downloadCardPdf({ qr, moduleCount, url }) {
+export async function downloadCardPdf({ url }) {
   const { jsPDF } = await import('jspdf')
+
+  // Level H to match the occlusion of the centre badge drawn over it.
+  const qr = qrcode(0, 'H')
+  qr.addData(buildVCard({ compact: true, url }))
+  qr.make()
+  const moduleCount = qr.getModuleCount()
 
   const doc = new jsPDF({
     unit: 'mm',
